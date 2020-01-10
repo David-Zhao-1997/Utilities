@@ -25,7 +25,7 @@ def killProcessWin(port):
 
 
 def killProcessUnix(port):
-    p = subprocess.Popen("lsof -i:" + str(port)+" | grep \""+str(port)+"\"", stdout=subprocess.PIPE,
+    p = subprocess.Popen("lsof -P -i:" + str(port)+" | grep \""+str(port)+"\"", stdout=subprocess.PIPE,
                          stderr=subprocess.STDOUT, shell=True)
     curLine = p.stdout.readline()
     while curLine != b'':
