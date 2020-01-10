@@ -25,17 +25,17 @@ def killProcessWin(port):
 
 
 def killProcessUnix(port):
-    p = subprocess.Popen("lsof -P -i:" + str(port)+" | grep \""+str(port)+"\"", stdout=subprocess.PIPE,
+    p = subprocess.Popen("lsof -P -i:" + str(port) + " | grep \"" + str(port) + "\"", stdout=subprocess.PIPE,
                          stderr=subprocess.STDOUT, shell=True)
     curLine = p.stdout.readline()
     while curLine != b'':
         lineArr = curLine.split()
         pid = lineArr[1].replace(os.linesep.encode(), "".encode())
-        result = os.system("kill -9 " + pid)
+        result = os.system("kill -9 " + str(pid))
         if result == 0:
-            print("pid : " +pid +" killed")
+            print("pid : " + str(pid) + " killed")
         else:
-           pass
+            pass
         curLine = p.stdout.readline()
     p.wait()
 
